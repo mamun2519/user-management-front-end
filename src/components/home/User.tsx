@@ -84,8 +84,8 @@ const User = () => {
           </Select>
         </FormControl>
       </div>
-      <div className="  lg:flex gap-4">
-        <div className="lg:w-80 w-full border h-full rounded  sticky p-5">
+      <div className="  lg:flex gap-4 mt-4">
+        <div className="lg:w-80 w-full border h-full rounded  sticky p-5 ">
           {/* <h3 className="text-xl">Search Name</h3> */}
           <div className="mt-2">
             <TextField
