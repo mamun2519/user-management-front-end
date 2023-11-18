@@ -17,7 +17,9 @@ const User = () => {
   const [pageLimit, setLimit] = useState(20);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectGender, setSelectGender] = useState("");
-  const [selectAvailable, setAvailable] = useState<string | boolean>("");
+  const [selectAvailable, setAvailable] = useState<string | boolean | null>(
+    null
+  );
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const query: Record<string, any> = {};
   const handlePageChange = (event: string, page: number) => {
@@ -49,7 +51,7 @@ const User = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleAvailableCheckboxChange = (value: React.SetStateAction<any>) => {
     console.log(value);
-    setAvailable(value === selectAvailable ? "" : value);
+    setAvailable(value === selectAvailable ? null : value);
   };
 
   const { data } = useAllUserQuery(query);
