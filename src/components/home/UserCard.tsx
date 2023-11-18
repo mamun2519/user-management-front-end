@@ -1,7 +1,33 @@
 import React from "react";
 import { IUser } from "../../interface/user";
-
+import { useAppSelector } from "../../redux/hook";
+import { toast } from "react-toastify";
+import { useCrateTeamMutation } from "../../redux/api/teamApi";
+import "react-toastify/dist/ReactToastify.css";
 const UserCard = ({ user }: { user: IUser }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const loginUser: any = useAppSelector((state) => state.user.user);
+  console.log(loginUser);
+  const [crateTeam] = useCrateTeamMutation();
+  const addTeamMemberHandler = async (id: string) => {
+    const data = {
+      userId: loginUser.userId,
+      teamMember: id,
+    };
+    try {
+      if (loginUser.email) {
+        const res = await crateTeam(data).unwrap();
+        if (res) {
+          toast.success("Team Member Added Successfully");
+        }
+        console.log(res);
+      } else {
+        toast.error("Please Login First");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="w-full h-full  overflow-hidden ">
       <div className=" shadow rounded-2xl border">
@@ -72,7 +98,12 @@ const UserCard = ({ user }: { user: IUser }) => {
             </div>
             <div className="w-full h-8 bg-red-500 text-white flex justify-center items-center rounded">
               {" "}
-              <button>Add Team</button>
+              <button
+                onClick={() => addTeamMemberHandler(user?._id)}
+                className="w-full"
+              >
+                Add Team
+              </button>
             </div>
           </div>
         </div>

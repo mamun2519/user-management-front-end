@@ -221,7 +221,10 @@ const Reg = () => {
           </div>
           <div className="mt-4">
             <div className=" w-full h-10 bg-red-500 text-white flex justify-center items-center">
-              <button type="submit"> Register</button>
+              <button className="w-full" type="submit">
+                {" "}
+                Register
+              </button>
             </div>
           </div>
 

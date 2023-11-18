@@ -52,7 +52,7 @@ const Login = () => {
 
   return (
     <div className=" h-screen flex  justify-center items-center max-w-7xl mx-auto">
-      <div className="w-[450px] h-96 border rounded-2xl shadow p-5">
+      <div className="w-[450px] h-[450px] border rounded-2xl shadow p-5">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="text-center flex justify-center">
             <div>

@@ -10,7 +10,10 @@ import {
   TextField,
 } from "@mui/material";
 import PaginationLink from "../ui/Pagination";
-
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 const User = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -55,12 +58,34 @@ const User = () => {
   };
 
   const { data } = useAllUserQuery(query);
-  console.log(data);
+
   return (
-    <div className="my-20 max-w-7xl mx-auto">
+    <div className="my-20 max-w-7xl mx-auto lg:px-0 px-4">
       <h3 className="text-center text-3xl ">Our User</h3>
-      <div className="  flex gap-4">
-        <div className="w-80 border h-full rounded mt-10 sticky p-5">
+
+      <div className=" flex justify-end">
+        <FormControl sx={{ minWidth: 120 }} size="small">
+          <InputLabel id="demo-select-small-label" className="px-4">
+            Limit
+          </InputLabel>
+          <Select
+            labelId="demo-select-small-label"
+            id="demo-select-small"
+            value={pageLimit}
+            label="Page"
+            onChange={(e) => setLimit(e.target.value)}
+          >
+            <MenuItem value={5}>5</MenuItem>
+            <MenuItem value={10}>10</MenuItem>
+            <MenuItem value={20}>20</MenuItem>
+            <MenuItem value={40}>40</MenuItem>
+            <MenuItem value={60}>60</MenuItem>
+            <MenuItem value={100}>100</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
+      <div className="  lg:flex gap-4">
+        <div className="lg:w-80 w-full border h-full rounded  sticky p-5">
           {/* <h3 className="text-xl">Search Name</h3> */}
           <div className="mt-2">
             <TextField
@@ -179,7 +204,7 @@ const User = () => {
             </div>
           </div>
         </div>
-        <div className=" grid lg:grid-cols-3 grid-cols-2 gap-5 mt-10">
+        <div className=" grid lg:grid-cols-3 grid-cols-1 gap-5 ">
           {data?.user?.map((user: IUser) => (
             <UserCard key={user?._id} user={user} />
           ))}

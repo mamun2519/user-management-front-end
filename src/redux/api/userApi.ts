@@ -5,10 +5,10 @@ export const userApi = baseApi.injectEndpoints({
     myTeam: build.query({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       query: () => ({
-        url: "/user/my-team",
+        url: "/team/my-team",
         method: "GET",
       }),
-      providesTags: ["user"],
+      providesTags: ["user", "team"],
     }),
     allUser: build.query({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
