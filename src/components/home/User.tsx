@@ -17,6 +17,7 @@ const User = () => {
   const [pageLimit, setLimit] = useState(20);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectGender, setSelectGender] = useState("");
+  const [selectAvailable, setAvailable] = useState<string | boolean>("");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const query: Record<string, any> = {};
   const handlePageChange = (event: string, page: number) => {
@@ -34,13 +35,21 @@ const User = () => {
   if (selectGender) {
     query["gender"] = selectGender;
   }
+  if (selectAvailable == true || selectAvailable == false) {
+    query["available"] = selectAvailable;
+  }
 
-  console.log(selectedValue);
+  console.log(selectAvailable);
   const handleCheckboxChange = (value: React.SetStateAction<string>) => {
     setSelectedValue(value === selectedValue ? "" : value);
   };
   const handleGenderCheckboxChange = (value: React.SetStateAction<string>) => {
     setSelectGender(value === selectGender ? "" : value);
+  };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleAvailableCheckboxChange = (value: React.SetStateAction<any>) => {
+    console.log(value);
+    setAvailable(value === selectAvailable ? "" : value);
   };
 
   const { data } = useAllUserQuery(query);
@@ -138,6 +147,32 @@ const User = () => {
                   />
                 }
                 label="Female"
+              />
+            </div>
+          </div>
+          <div className="mt-3">
+            <FormLabel component="legend">Filter By Available</FormLabel>
+            <div>
+              {" "}
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={selectAvailable === true}
+                    onChange={() => handleAvailableCheckboxChange(true)}
+                  />
+                }
+                label="Available"
+              />
+            </div>
+            <div>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={selectAvailable === false}
+                    onChange={() => handleAvailableCheckboxChange(false)}
+                  />
+                }
+                label="UnAvailable"
               />
             </div>
           </div>
