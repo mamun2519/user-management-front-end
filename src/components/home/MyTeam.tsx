@@ -10,8 +10,9 @@ import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDeleteTeamMutation } from "../../redux/api/teamApi";
 import { toast } from "react-toastify";
+import Loading from "../shared/Loading";
 const MyTeam = () => {
-  const { data } = useMyTeamQuery({});
+  const { data, isLoading } = useMyTeamQuery({});
   console.log(data);
   const [deleteTeam] = useDeleteTeamMutation();
   const teamMemberDeleteHandler = async (id: string) => {
@@ -28,6 +29,9 @@ const MyTeam = () => {
       toast.error("something is wrong");
     }
   };
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className=" max-w-7xl mx-auto">
       <div className="mt-20">

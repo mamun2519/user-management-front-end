@@ -3,7 +3,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useAppSelector } from "../../redux/hook";
 
 const RequireAuth = ({ children }: { children: React.ReactNode }) => {
-  const user: { email: string; userId: string } = useAppSelector(
+  const user: { email: string | null; userId: string | null } = useAppSelector(
     (state) => state.user.user
   );
   const location = useLocation();

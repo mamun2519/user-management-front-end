@@ -4,10 +4,12 @@ import { useAppSelector } from "../../redux/hook";
 import { toast } from "react-toastify";
 import { useCrateTeamMutation } from "../../redux/api/teamApi";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 const UserCard = ({ user }: { user: IUser }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const loginUser: any = useAppSelector((state) => state.user.user);
-  console.log(loginUser);
+  const loginUser: { email: string | null; userId: string | null } =
+    useAppSelector((state) => state.user.user);
+  const Navigate = useNavigate();
   const [crateTeam] = useCrateTeamMutation();
   const addTeamMemberHandler = async (id: string) => {
     const data = {
@@ -94,7 +96,9 @@ const UserCard = ({ user }: { user: IUser }) => {
           <div className="mt-3 w-full flex gap-2">
             <div className="w-full h-8 bg-red-500 text-white flex justify-center items-center rounded">
               {" "}
-              <button>View Details</button>
+              <button onClick={() => Navigate(`/user/${user?._id}`)}>
+                View Details
+              </button>
             </div>
             <div className="w-full h-8 bg-red-500 text-white flex justify-center items-center rounded">
               {" "}

@@ -14,6 +14,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Loading from "../shared/Loading";
 const User = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,7 +45,6 @@ const User = () => {
     query["available"] = selectAvailable;
   }
 
-  console.log(selectAvailable);
   const handleCheckboxChange = (value: React.SetStateAction<string>) => {
     setSelectedValue(value === selectedValue ? "" : value);
   };
@@ -57,7 +57,10 @@ const User = () => {
     setAvailable(value === selectAvailable ? null : value);
   };
 
-  const { data } = useAllUserQuery(query);
+  const { data, isLoading } = useAllUserQuery(query);
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="my-20 max-w-7xl mx-auto lg:px-0 px-4">
