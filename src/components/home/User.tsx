@@ -13,7 +13,7 @@ import PaginationLink from "../ui/Pagination";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 const User = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -73,7 +73,7 @@ const User = () => {
             id="demo-select-small"
             value={pageLimit}
             label="Page"
-            onChange={(e) => setLimit(e.target.value)}
+            onChange={(e) => setLimit(e.target.value as number)}
           >
             <MenuItem value={5}>5</MenuItem>
             <MenuItem value={10}>10</MenuItem>

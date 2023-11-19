@@ -6,6 +6,7 @@ import Login from "./components/auth/Login";
 import Reg from "./components/auth/Reg";
 import { ToastContainer } from "react-toastify";
 import MyTeam from "./components/home/MyTeam";
+import RequireAuth from "./components/auth/RequreAuth";
 // src/main.ts
 
 // your other code...
@@ -18,7 +19,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Reg />} />
-        <Route path="/my-team" element={<MyTeam />} />
+        <Route
+          path="/my-team"
+          element={
+            <RequireAuth>
+              <MyTeam />
+            </RequireAuth>
+          }
+        />
       </Routes>
     </MainLayout>
   );
