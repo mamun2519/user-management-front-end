@@ -1,4 +1,3 @@
-import React from "react";
 import { useMyTeamQuery } from "../../redux/api/userApi";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -11,6 +10,19 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useDeleteTeamMutation } from "../../redux/api/teamApi";
 import { toast } from "react-toastify";
 import Loading from "../shared/Loading";
+
+interface ITeam {
+  teamMember: {
+    _id: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    gender: string;
+    domain: string;
+  };
+  available: boolean;
+  _id: string;
+}
 const MyTeam = () => {
   const { data, isLoading } = useMyTeamQuery({});
   console.log(data);
@@ -48,7 +60,7 @@ const MyTeam = () => {
                 <TableCell align="right">Action</TableCell>
               </TableRow>
             </TableHead>
-            {data?.map((team) => (
+            {data?.map((team: ITeam) => (
               <TableBody key={team?.teamMember._id}>
                 <TableCell>
                   {team?.teamMember.first_name} {team?.teamMember.last_name}

@@ -1,4 +1,3 @@
-import React from "react";
 import { IUser } from "../../interface/user";
 import { useAppSelector } from "../../redux/hook";
 import { toast } from "react-toastify";
@@ -19,6 +18,7 @@ const UserCard = ({ user }: { user: IUser }) => {
     try {
       if (loginUser.email) {
         const res = await crateTeam(data).unwrap();
+        console.log(res);
         if (res) {
           toast.success("Team Member Added Successfully");
         }
@@ -26,7 +26,9 @@ const UserCard = ({ user }: { user: IUser }) => {
       } else {
         toast.error("Please Login First");
       }
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error(error?.data);
       console.log(error);
     }
   };

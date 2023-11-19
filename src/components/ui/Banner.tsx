@@ -1,4 +1,3 @@
-import React from "react";
 import BannerPic from "../../assets/picture/User research-pana.svg";
 import { useNavigate } from "react-router-dom";
 const Banner = () => {

@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import { useUserDetailsQuery } from "../../redux/api/userApi";
 import { useAppSelector } from "../../redux/hook";

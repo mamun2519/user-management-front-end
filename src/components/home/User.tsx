@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAllUserQuery } from "../../redux/api/userApi";
 import UserCard from "./UserCard";
 import { IUser } from "../../interface/user";
@@ -26,7 +26,7 @@ const User = () => {
   );
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const query: Record<string, any> = {};
-  const handlePageChange = (event: string, page: number) => {
+  const handlePageChange = (_event: string, page: number) => {
     setCurrentPage(page);
   };
   query["page"] = currentPage;
